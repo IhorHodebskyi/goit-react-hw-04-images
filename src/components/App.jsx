@@ -26,7 +26,7 @@ export const App = () => {
         setIsLoading(true);
         const { hits } = await Images.getAllImages(searchName, page);
 
-        setImages(prevState => [...images, ...hits]);
+        setImages(prevState => [...prevState, ...hits]);
         setImagesOnPage(hits.length);
       } catch (error) {
         console.log(error);
