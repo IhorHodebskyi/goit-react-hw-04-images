@@ -22,6 +22,7 @@ export const App = () => {
   const [currentImageDescription, setCurrentImageDescription] = useState('');
 
   useEffect(() => {
+    if (!searchName) return;
     getAllImages(searchName, page);
   }, [searchName, page]);
 
