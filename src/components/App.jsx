@@ -14,10 +14,8 @@ export const App = () => {
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
   const [imagesOnPage, setImagesOnPage] = useState(0);
-  // const [totalImages, setTotalImages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  // const [error, setError] = useState(null);
   const [currentImageUrl, setCurrentImageUrl] = useState('');
   const [currentImageDescription, setCurrentImageDescription] = useState('');
 
@@ -26,12 +24,6 @@ export const App = () => {
     getAllImages(searchName, page);
   }, [searchName, page]);
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { searchName, page } = this.state;
-  //   if (prevState.searchName !== searchName || prevState.page !== page) {
-  //     this.getAllImages(searchName, page);
-  //   }
-  // }
   //=============================================================================
   const getAllImages = async (searchName, page) => {
     try {
@@ -49,12 +41,10 @@ export const App = () => {
   //=============================================================================
   const onNextFetch = () => {
     setPage(page + 1);
-    // this.setState(({ page }) => ({ page: page + 1 }));
   };
   //===============================================================================
   const toggleModal = () => {
     setShowModal(!showModal);
-    // this.setState(({ showModal }) => ({ showModal: !showModal }));
   };
   //========================================================================
 
