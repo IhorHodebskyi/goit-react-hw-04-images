@@ -20,24 +20,38 @@ export const App = () => {
   const [currentImageDescription, setCurrentImageDescription] = useState('');
 
   useEffect(() => {
-    if (!searchName) return;
+    if (searchName === '') return;
+    const getAllImages = async (searchName, page) => {
+      try {
+        setIsLoading(true);
+        const { hits } = await Images.getAllImages(searchName, page);
+
+        setImages(() => [...images, ...hits]);
+        setImagesOnPage(hits.length);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
     getAllImages(searchName, page);
-  }, [searchName, page]);
+  }, [searchName, page, images]);
 
   //=============================================================================
-  const getAllImages = async (searchName, page) => {
-    try {
-      setIsLoading(true);
-      const { hits } = await Images.getAllImages(searchName, page);
+  // const getAllImages = async (searchName, page) => {
+  //   try {
+  //     setIsLoading(true);
+  //     const { hits } = await Images.getAllImages(searchName, page);
 
-      setImages(() => [...images, ...hits]);
-      setImagesOnPage(hits.length);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //     setImages(() => [...images, ...hits]);
+  //     setImagesOnPage(hits.length);
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   //=============================================================================
   const onNextFetch = () => {
     setPage(page + 1);
