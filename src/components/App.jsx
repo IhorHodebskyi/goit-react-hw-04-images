@@ -20,7 +20,7 @@ export const App = () => {
   const [currentImageDescription, setCurrentImageDescription] = useState('');
 
   useEffect(() => {
-    if (searchName === '') return;
+    if (!searchName) return;
     const getAllImages = async (searchName, page) => {
       try {
         setIsLoading(true);
