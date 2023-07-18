@@ -8,12 +8,17 @@ export const Modal = ({
   currentImageUrl,
 }) => {
   useEffect(() => {
-    window.addEventListener('keydown', e => {
-      if (e.code === 'Escape') {
-        onClose();
-      }
-    });
-  }, [onClose]);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  });
+
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      onClose();
+    }
+  };
 
   const handleClickBackdrop = e => {
     if (e.target === e.currentTarget) {
